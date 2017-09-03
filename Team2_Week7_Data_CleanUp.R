@@ -15,3 +15,5 @@ clean_data$Street <- gsub("[^A-Za-z ]", " ", clean_data$Street)
 clean_data$Street <- gsub("(?<=[\\s])\\s*|^\\s+|\\s+$", "", clean_data$Street, perl=TRUE)
 clean_data$Street.2 <- gsub("[^A-Za-z ]", " ", clean_data$Street.2)
 clean_data$Street.2 <- gsub("(?<=[\\s])\\s*|^\\s+|\\s+$", "", clean_data$Street.2, perl=TRUE)
+clean_data <- transform(clean_data, clean_data$`Street 2` == ifelse(clean_data$Street == clean_data$`Street 2`, NA, clean_data$`Street 2`))
+if (clean_data$`Street 2` == clean_data$Street){clean_data$`Street 2` = -1}else{clean_data$`Street 2`= clean_data$`Street 2`}
